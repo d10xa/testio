@@ -1,0 +1,22 @@
+plugins {
+    id "com.jfrog.bintray" version "1.4"
+}
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply from: 'gradle/bintray.gradle'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+version = '0.0.2'
+group = 'ru.d10xa'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+
