@@ -23,12 +23,7 @@ public class SystemIo {
     }
 
     public String getOutString() {
-//        try {
-//            return redirectedOut.toString("UTF-8");
-            return redirectedOut.toString();
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException(e);
-//        }
+        return redirectedOut.toString();
     }
 
     public String getErrString() {
@@ -41,8 +36,8 @@ public class SystemIo {
 
     public String getOutErrString() {
         return new StringBuilder(getOutString())
-                .append(getErrString())
-                .toString();
+            .append(getErrString())
+            .toString();
     }
 
     public void redirect() {

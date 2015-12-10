@@ -1,6 +1,9 @@
 package ru.d10xa.testio;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 
 public class Invocation {
@@ -17,6 +20,15 @@ public class Invocation {
         this.systemIo.setRedirectedIn(
                 new ByteArrayInputStream(join(in).getBytes(StandardCharsets.UTF_8))
         );
+        return this;
+    }
+
+    public Invocation setIn(File in) {
+        try {
+            this.systemIo.setRedirectedIn(new FileInputStream(in));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 

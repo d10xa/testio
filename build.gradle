@@ -5,14 +5,13 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-version = '0.0.1'
 group = 'ru.d10xa'
+version = '0.1.0'
 
 apply from: 'gradle/bintray.gradle'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
-
 
 repositories {
     jcenter()
@@ -21,5 +20,3 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.12'
 }
-
-
