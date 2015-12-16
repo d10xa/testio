@@ -6,7 +6,7 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 group = 'ru.d10xa'
-version = '0.1.0'
+version = '0.2.0-SNAPSHOT'
 
 apply from: 'gradle/bintray.gradle'
 
@@ -18,5 +18,5 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 }
