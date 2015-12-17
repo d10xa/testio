@@ -1,6 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
+after_success:
+  - ./gradlew jacocoTestReport coveralls
 
 deploy:
   skip_cleanup: true
