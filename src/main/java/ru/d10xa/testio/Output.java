@@ -1,15 +1,13 @@
 package ru.d10xa.testio;
 
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
+import org.junit.rules.ExternalResource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-public class Output implements TestRule {
+public class Output extends ExternalResource {
 
     private ByteArrayOutputStream copyOut;
     private ByteArrayOutputStream copyErr;
@@ -18,19 +16,13 @@ public class Output implements TestRule {
     private CaptureOutputStream captureErr;
 
     @Override
-    public Statement apply(final Statement base, Description description) {
-        return new Statement() {
-            @Override
-            public void evaluate() throws Throwable {
-                captureOutput();
-                try {
-                    base.evaluate();
-                }
-                finally {
-                    releaseOutput();
-                }
-            }
-        };
+    protected void before() throws Throwable {
+        captureOutput();
+    }
+
+    @Override
+    protected void after() {
+        releaseOutput();
     }
 
     private void captureOutput() {
