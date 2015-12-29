@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-public class Output extends ExternalResource {
+class Output extends ExternalResource {
 
     private ByteArrayOutputStream copyOut;
     private ByteArrayOutputStream copyErr;

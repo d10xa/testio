@@ -8,7 +8,7 @@ import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class Input extends ExternalResource {
+class Input extends ExternalResource {
 
     private InputStream originalIn;
     private SystemInMock mockIn;
