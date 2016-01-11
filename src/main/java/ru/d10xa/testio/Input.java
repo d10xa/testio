@@ -34,9 +34,14 @@ class Input extends ExternalResource {
     }
 
     private String joinLines(String[] lines) {
+        String separator = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
-        for (String line : lines) {
-            sb.append(line).append(System.getProperty("line.separator"));
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
+            sb.append(line);
+            if (i != lines.length - 1 && !separator.equals(line)) {
+                sb.append(separator);
+            }
         }
         return sb.toString();
     }

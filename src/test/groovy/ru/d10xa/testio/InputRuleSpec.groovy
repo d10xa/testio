@@ -30,9 +30,23 @@ class InputRuleSpec extends Specification {
         when:
         println new Scanner(System.in).nextLine()
         println new Scanner(System.in).nextLine()
-        println new Scanner(System.in).nextLine()
 
         then:
-        output as String == "\n\nhello\n"
+        output as String == "\nhello\n"
     }
+
+    def 'two line separators'() {
+        given:
+        input << [String.format("%n"), String.format("%n")]
+        def sc = new Scanner(System.in)
+
+        when:
+        while (sc.hasNextLine()) {
+            println sc.nextLine()
+        }
+
+        then:
+        output as String == "\n\n"
+    }
+
 }
