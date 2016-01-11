@@ -14,7 +14,7 @@ class TestioSpec extends Specification {
         testio.out != null
     }
 
-    def 'testio.in'(){
+    def 'testio.in'() {
         given:
         testio.in << "testio.in check"
 
@@ -23,6 +23,25 @@ class TestioSpec extends Specification {
 
         then:
         testio.out as String == "testio.in check\n"
+    }
+
+    def 'left shift'() {
+        given:
+        testio << "leftShift check"
+
+        when:
+        println new Scanner(System.in).nextLine()
+
+        then:
+        testio.out as String == "leftShift check\n"
+    }
+
+    def 'to string'() {
+        when:
+        println "hi there"
+
+        then:
+        "$testio" == "hi there\n"
     }
 
 }
