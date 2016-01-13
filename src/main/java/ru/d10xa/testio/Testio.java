@@ -1,27 +1,39 @@
 package ru.d10xa.testio;
 
-public final class Testio {
+import org.junit.rules.ExternalResource;
+
+import java.util.List;
+
+public final class Testio extends ExternalResource {
+
+    public final Input in = new Input();
+    public final Output out = new Output();
 
     private Testio() {
     }
 
-    public static Invocation invocation(Task task){
-        return new Invocation(task);
+    @Override
+    protected void before() throws Throwable {
+        in.before();
+        out.before();
     }
 
-    public static String join(String... strings) {
-        if(strings == null){
-            throw new NullPointerException("join(String...)");
-        }
-        if (strings.length == 0) {
-            return "";
-        }
-        StringBuilder sb = new StringBuilder();
-        for (String s : strings) {
-            sb.append(s);
-            sb.append(System.lineSeparator());
-        }
-        return sb.toString();
+    @Override
+    protected void after() {
+        in.after();
+        out.after();
     }
 
+    public void leftShift(String... lines) {
+        in.leftShift(lines);
+    }
+
+    public void leftShift(List<String> lines) {
+        in.leftShift(lines);
+    }
+
+    @Override
+    public String toString() {
+        return out.toString();
+    }
 }

@@ -9,6 +9,7 @@ bintray {
         }
     }
     publications = ['MavenJava']
+    publish = true
 }
 
 publishing {

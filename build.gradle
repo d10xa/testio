@@ -1,22 +1,41 @@
-plugins {
-    id "com.jfrog.bintray" version "1.4"
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+    }
 }
 
-apply plugin: 'java'
-apply plugin: 'maven-publish'
+plugins {
+    id "com.jfrog.bintray" version "1.4"
+    id "jacoco"
+    id "java"
+    id "groovy"
+    id "maven-publish"
+}
 
 group = 'ru.d10xa'
-version = '0.1.0'
-
-apply from: 'gradle/bintray.gradle'
-
+version = '0.2.0'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
+
+apply plugin: 'com.github.kt3k.coveralls'
+apply from: 'gradle/bintray.gradle'
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
