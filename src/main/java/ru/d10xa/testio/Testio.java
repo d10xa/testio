@@ -2,6 +2,7 @@ package ru.d10xa.testio;
 
 import org.junit.rules.ExternalResource;
 
+import java.io.File;
 import java.util.List;
 
 public final class Testio extends ExternalResource {
@@ -22,6 +23,16 @@ public final class Testio extends ExternalResource {
     protected void after() {
         in.after();
         out.after();
+    }
+
+    public static File resourceFile(String name) {
+        return new File(
+            Thread
+                .currentThread()
+                .getContextClassLoader()
+                .getResource(name)
+                .getFile()
+        );
     }
 
     public void leftShift(String... lines) {
